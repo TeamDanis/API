@@ -13,9 +13,16 @@ function APICall(){
 	  url: "http://localhost:3000/api/login?userName="+userName+"&userPassword="+userPassword,
 	  dataType: "json",
 	}).done(function (msg) {
-        console.log("logeado correctamente");
-        x = msg;
-        console.log(x);
+        
+		var json = msg;
+
+		if (json.correct == true){
+			console.log(json);
+			alert("logeado correctamente!");
+		} else {
+			console.log(json);
+			alert("login incorrecto!")
+		}
 
 	}).fail(function () {
         console.log("logeado incorrectamente");
