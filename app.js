@@ -37,11 +37,19 @@ app.get('/api/login', function(req, res) {
 
   userPassword= md5(userPassword);
 
-  var alumno = { "name" : userName };
+  var alumno = { "Name" : userName };
 
   getUser(alumno, res, userPassword);
 
 });
+
+app.get('/api/loginAdmins'), function(req, res){
+
+  res.json({
+    correct: false,
+    token: "no token"
+  });
+}
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
@@ -55,8 +63,8 @@ function getUser(query, res, userPassword){
     mongoClient = _client;
   });
 
-    var dbo = mongoClient.db("DatosAlumnos");
-    dbo.collection('Alumnos').find(query).toArray(function( err, docs ) {
+    var dbo = mongoClient.db("Matriculacions_BD");
+    dbo.collection('Students_data').find(query).toArray(function( err, docs ) {
         if( err ) {
             res.json({correct: false , token: "error on validation"});
             mongoClient.close();
@@ -73,11 +81,11 @@ function getUser(query, res, userPassword){
 }
 
 function checkPassword(data, userPassword, res){
-    console.log("checkiando las strings, dbPassword: ", data.password, "userPassword", userPassword);
+    console.log("checkiando las strings, dbPassword: ", data.Password, "userPassword", userPassword);
 
     mongoClient.close();
 
-    if(data.password == userPassword){
+    if(data.Password == userPassword){
 
       token = jwt.sign(data, 'tokenpass', {expiresIn: 300});
 
@@ -89,7 +97,7 @@ function checkPassword(data, userPassword, res){
     } else {
       res.json({
         correct: false,
-        token: "no token",
+        token: "password incorrecta",
       });
     }    
 }
