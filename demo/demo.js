@@ -9,10 +9,11 @@ function APICall(){
     var x;
 
 	//https://team-danis-api.herokuapp.com
+	//http://localhost:3000
 
 	$.ajax({
 	  method: "GET",
-	  url: "http://localhost:3000/api/login?userName="+userName+"&userPassword="+userPassword,
+	  url: "https://team-danis-api.herokuapp.com/api/login?userName="+userName+"&userPassword="+userPassword,
 	  dataType: "json",
 	}).done(function (msg) {
         
