@@ -58,12 +58,16 @@ function getUser(query, res, userPassword){
     var dbo = mongoClient.db("DatosAlumnos");
     dbo.collection('Alumnos').find(query).toArray(function( err, docs ) {
         if( err ) {
-            res.send( JSON.stringify( {status:"error",msg:"error a la query"}) );
-            return;
+            res.json({correct: false , token: "error on validation"});
+            mongoClient.close();
+        } 
+
+        if(docs[0] != undefined) {
+          console.log("testing in method", docs[0]);
+          checkPassword(docs[0], userPassword, res);
+        } else {
+          res.json({correct: false, token: "el usuario no esta."})
         }
-        console.log("testing in method", docs[0]);
-        checkPassword(docs[0], userPassword, res)
-        
     });
 
 }
