@@ -149,7 +149,7 @@ Aquesta resposta torna les dades en format JSON.
 
 <table class="wikitable">
 <tbody><tr>
-<th colspan="3">Response&nbsp;: JSON
+<th colspan="3">Response
 </th></tr>
 <tr>
 <th colspan="3">POST /api/cicle/create
@@ -203,7 +203,7 @@ Aquesta resposta torna les dades en format JSON.
 
 <table class="wikitable">
 <tbody><tr>
-<th colspan="3">Response&nbsp;: JSON
+<th colspan="3">Response
 </th></tr>
 <tr>
 <th colspan="3">GET /api/cicle/read
@@ -265,7 +265,7 @@ Aquesta resposta torna les dades en format JSON.
 
 <table class="wikitable">
 <tbody><tr>
-<th colspan="3">Response&nbsp;: JSON
+<th colspan="3">Response
 </th></tr>
 <tr>
 <th colspan="3">GET /api/cicle/update
@@ -319,7 +319,7 @@ Aquesta resposta torna les dades en format JSON.
 
 <table class="wikitable">
 <tbody><tr>
-<th colspan="3">Response&nbsp;: JSON
+<th colspan="3">Response
 </th></tr>
 <tr>
 <th colspan="3">GET /api/cicle/delete
