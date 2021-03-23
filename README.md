@@ -60,7 +60,7 @@ Aquesta resposta torna les dades en format JSON.
 <td>Devuelve un token en el caso de que sea correcto el login
 </td></tr></tbody></table>
 
-<hr><hr>
+<hr>
 
 <table>
 <tbody><tr>
@@ -121,3 +121,60 @@ Aquesta resposta torna les dades en format JSON.
 </td>
 <td>Devuelve un token en el caso de que sea correcto el login
 </td></tr></tbody></table>
+
+<hr><hr><hr>
+
+<table>
+<tbody><tr>
+<th colspan="3">Request
+</th></tr>
+<tr>
+<th colspan="3">POST /api/cicle/create
+</th></tr>
+<tr>
+<th>Param
+</th>
+<th>Values
+</th>
+<th>Description
+</th></tr>
+<tr>
+<td>cicleData
+</td>
+<td>JSON String
+</td>
+<td>Una string con la información del ciclo en formato JSON.
+</td>
+</tr></tbody></table>
+
+Aquesta resposta torna les dades en format JSON.
+
+<table class="wikitable">
+<tbody><tr>
+<th colspan="3">Response&nbsp;: JSON
+</th></tr>
+<tr>
+<th colspan="3">GET /api/loginAdmin
+</th></tr>
+<tr>
+<th>Param
+</th>
+<th>Values
+</th>
+<th>Description
+</th></tr>
+<tr>
+<td>correct
+</td>
+<td>Boolean
+</td>
+<td>Confirma si el usuario y contraseña coinciden con la base de datos
+</td></tr>
+<tr>
+<td>token
+</td>
+<td>Token
+</td>
+<td>Devuelve un token en el caso de que sea correcto el login
+</td></tr></tbody></table>
+
