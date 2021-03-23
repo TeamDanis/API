@@ -124,6 +124,9 @@ Aquesta resposta torna les dades en format JSON.
 
 <hr><hr><hr>
 
+
+<h1>CRUD</h1>
+
 <table>
 <tbody><tr>
 <th colspan="3">Request
