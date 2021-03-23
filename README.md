@@ -154,7 +154,7 @@ Aquesta resposta torna les dades en format JSON.
 <th colspan="3">Response&nbsp;: JSON
 </th></tr>
 <tr>
-<th colspan="3">GET /api/loginAdmin
+<th colspan="3">POST /api/cicle/create
 </th></tr>
 <tr>
 <th>Param
@@ -164,17 +164,17 @@ Aquesta resposta torna les dades en format JSON.
 <th>Description
 </th></tr>
 <tr>
-<td>correct
+<td>done
 </td>
 <td>Boolean
 </td>
-<td>Confirma si el usuario y contraseña coinciden con la base de datos
+<td>Confirma si se ha realizado correctamente la creación del ciclo.
 </td></tr>
 <tr>
-<td>token
+<td>createInfo
 </td>
-<td>Token
+<td>String
 </td>
-<td>Devuelve un token en el caso de que sea correcto el login
+<td>String con información sobre la creación del ciclo
 </td></tr></tbody></table>
 
