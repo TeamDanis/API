@@ -13,7 +13,11 @@ function APICall(){
 
 	$.ajax({
 	  method: "GET",
+<<<<<<< HEAD
 	  url: "http://localhost:3000/api/login?userName="+userName+"&userPassword="+userPassword,
+=======
+	  url: "https://team-danis-api.herokuapp.com/api/login?userName="+userName+"&userPassword="+userPassword,
+>>>>>>> 7fc39c7a68321f0669dc8c041a3931a514f6027a
 	  dataType: "json",
 	}).done(function (msg) {
         

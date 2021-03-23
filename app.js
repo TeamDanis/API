@@ -15,9 +15,12 @@ var mongoClient;
 var userPassword
 var userName
 
+<<<<<<< HEAD
 var adminPassword
 var adminName
 
+=======
+>>>>>>> 7fc39c7a68321f0669dc8c041a3931a514f6027a
 
 // connexió a mongo i start app
 mongo.connect(url, function( err, _client ) {
@@ -48,6 +51,7 @@ app.get('/api/login', function(req, res) {
 
 app.get('/api/loginAdmins'), function(req, res){
 
+<<<<<<< HEAD
   adminName = req.query.userName;
   adminPassword = req.query.userPassword;
 
@@ -60,6 +64,8 @@ app.get('/api/loginAdmins'), function(req, res){
 
   getUser(admin, res, adminPassword);
 
+=======
+>>>>>>> 7fc39c7a68321f0669dc8c041a3931a514f6027a
   res.json({
     correct: false,
     token: "no token"
@@ -92,6 +98,7 @@ function getUser(query, res, userPassword){
           res.json({correct: false, token: "el usuario no esta."})
         }
     });
+<<<<<<< HEAD
 }
 
 function getAdmin(query, res, userPassword){
@@ -121,6 +128,11 @@ function getAdmin(query, res, userPassword){
 }
 
 
+=======
+
+}
+
+>>>>>>> 7fc39c7a68321f0669dc8c041a3931a514f6027a
 function checkPassword(data, userPassword, res){
     console.log("checkiando las strings, dbPassword: ", data.Password, "userPassword", userPassword);
 
