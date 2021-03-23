@@ -15,6 +15,9 @@ var mongoClient;
 var userPassword
 var userName
 
+var adminPassword
+var adminName
+
 
 // connexió a mongo i start app
 mongo.connect(url, function( err, _client ) {
@@ -44,6 +47,18 @@ app.get('/api/login', function(req, res) {
 });
 
 app.get('/api/loginAdmins'), function(req, res){
+
+  adminName = req.query.userName;
+  adminPassword = req.query.userPassword;
+
+  console.log("admin name: ", userName);
+  console.log("admin password: ", userPassword);
+
+  adminPassword= md5(adminPassword);
+
+  var admin = { "Name" : adminName };
+
+  getUser(admin, res, adminPassword);
 
   res.json({
     correct: false,
@@ -77,8 +92,34 @@ function getUser(query, res, userPassword){
           res.json({correct: false, token: "el usuario no esta."})
         }
     });
-
 }
+
+function getAdmin(query, res, userPassword){
+
+    mongo.connect(url, function( err, _client ) {
+    // si no ens podem connectar, sortim
+    if( err ) throw err;
+    mongoClient = _client;
+    });
+
+    var dbo = mongoClient.db("Matriculacions_BD");
+
+    //cambiar base de datos por la de admins
+    dbo.collection('Students_data').find(query).toArray(function( err, docs ) {
+        if( err ) {
+            res.json({correct: false , token: "error on validation"});
+            mongoClient.close();
+        } 
+
+        if(docs[0] != undefined) {
+          console.log("testing in method", docs[0]);
+          checkPassword(docs[0], userPassword, res);
+        } else {
+          res.json({correct: false, token: "el usuario administrador no existe."})
+        }
+    });
+}
+
 
 function checkPassword(data, userPassword, res){
     console.log("checkiando las strings, dbPassword: ", data.Password, "userPassword", userPassword);
