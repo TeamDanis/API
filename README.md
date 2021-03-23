@@ -60,11 +60,7 @@ Aquesta resposta torna les dades en format JSON.
 <td>Devuelve un token en el caso de que sea correcto el login
 </td></tr></tbody></table>
 
-<<<<<<< HEAD
-<hr><hr>
-=======
-<hr>
->>>>>>> 7fc39c7a68321f0669dc8c041a3931a514f6027a
+<hr><hr><hr>
 
 <table>
 <tbody><tr>
@@ -125,8 +121,6 @@ Aquesta resposta torna les dades en format JSON.
 </td>
 <td>Devuelve un token en el caso de que sea correcto el login
 </td></tr></tbody></table>
-<<<<<<< HEAD
-=======
 
 <hr><hr><hr>
 
@@ -347,4 +341,4 @@ Aquesta resposta torna les dades en format JSON.
 </td>
 <td>Confirma si se ha realizado correctamente la actualización de la información del ciclo.
 </td></tr></tbody></table>
->>>>>>> 7fc39c7a68321f0669dc8c041a3931a514f6027a
+
