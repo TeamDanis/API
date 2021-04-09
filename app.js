@@ -13,7 +13,10 @@ var mongoClient;
 
 
 var userPassword
-var userName
+var userEmail
+
+var adminPassword
+var adminUsername
 
 
 // connexió a mongo i start app
@@ -29,21 +32,34 @@ app.use(cors());
 app.get('/api/login', function(req, res) {
 
   //auth user
-  userName = req.query.userName;
+  userEmail = req.query.userEmail;
   userPassword = req.query.userPassword;
 
-  console.log("user name: ", userName);
+  console.log("user name: ", userEmail);
   console.log("user password: ", userPassword);
 
   userPassword= md5(userPassword);
 
-  var alumno = { "Name" : userName };
+  var alumno = { "E-mail" : userEmail };
 
   getUser(alumno, res, userPassword);
 
 });
 
 app.get('/api/loginAdmins'), function(req, res){
+
+  adminUserame = req.query.adminUsername;
+  adminPassword = req.query.userPassword;
+
+  console.log("admin name: ", adminUsername);
+  console.log("admin password: ", adminPassword);
+
+  adminPassword= md5(adminPassword);
+
+  var admin = { "Username" : adminUsername };
+
+  getAdmin(admin, res, adminPassword);
+
 
   res.json({
     correct: false,
@@ -77,15 +93,40 @@ function getUser(query, res, userPassword){
           res.json({correct: false, token: "el usuario no esta."})
         }
     });
-
 }
 
-function checkPassword(data, userPassword, res){
-    console.log("checkiando las strings, dbPassword: ", data.Password, "userPassword", userPassword);
+function getAdmin(query, res, adminPassword){
+
+    mongo.connect(url, function( err, _client ) {
+    // si no ens podem connectar, sortim
+    if( err ) throw err;
+    mongoClient = _client;
+    });
+
+    var dbo = mongoClient.db("Matriculacions_BD");
+
+    //cambiar base de datos por la de admins
+    dbo.collection('Admins').find(query).toArray(function( err, docs ) {
+        if( err ) {
+            res.json({correct: false , token: "error on validation"});
+            mongoClient.close();
+        } 
+
+        if(docs[0] != undefined) {
+          console.log("testing in method", docs[0]);
+          checkPassword(docs[0], adminPassword, res);
+        } else {
+          res.json({correct: false, token: "el usuario administrador no existe."})
+        }
+    });
+}
+
+
+function checkPassword(data, pass, res){
 
     mongoClient.close();
 
-    if(data.Password == userPassword){
+    if(data.Password == pass){
 
       token = jwt.sign(data, 'tokenpass', {expiresIn: 300});
 
