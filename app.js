@@ -46,7 +46,7 @@ app.get('/api/login', function(req, res) {
 
 });
 
-app.get('/api/loginAdmin'), function(req, res){
+app.get('/api/loginAdmin', function(req, res){
 
   adminUsername = req.query.adminUsername;
   adminPassword = req.query.adminPassword;
@@ -65,7 +65,7 @@ app.get('/api/loginAdmin'), function(req, res){
     correct: false,
     token: "no token"
   });
-}
+});
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)

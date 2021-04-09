@@ -13,7 +13,7 @@ function APICall(){
 
 	$.ajax({
 	  method: "GET",
-	  url: "https://team-danis-api.herokuapp.com/api/login?userName="+userName+"&userPassword="+userPassword,
+	  url: "https://team-danis-api.herokuapp.com/api/login?userEmail="+userName+"&userPassword="+userPassword,
 	  dataType: "json",
 	}).done(function (msg) {
         
