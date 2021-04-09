@@ -60,11 +60,6 @@ app.get('/api/loginAdmin', function(req, res){
 
   getAdmin(admin, res, adminPassword);
 
-
-  res.json({
-    correct: false,
-    token: "no token"
-  });
 });
 
 app.listen(port, () => {
