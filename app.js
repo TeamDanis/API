@@ -49,7 +49,7 @@ app.get('/api/login', function(req, res) {
 app.get('/api/loginAdmins'), function(req, res){
 
   adminUserame = req.query.adminUsername;
-  adminPassword = req.query.userPassword;
+  adminPassword = req.query.adminPassword;
 
   console.log("admin name: ", adminUsername);
   console.log("admin password: ", adminPassword);
