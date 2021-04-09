@@ -46,9 +46,9 @@ app.get('/api/login', function(req, res) {
 
 });
 
-app.get('/api/loginAdmins'), function(req, res){
+app.get('/api/loginAdmin'), function(req, res){
 
-  adminUserame = req.query.adminUsername;
+  adminUsername = req.query.adminUsername;
   adminPassword = req.query.adminPassword;
 
   console.log("admin name: ", adminUsername);
