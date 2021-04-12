@@ -154,7 +154,7 @@ app.get('/api/getDegree', function(req, res) {
   });
 
     var dbo = mongoClient.db("Matriculacions_BD");
-    dbo.collection('Educational_degree').findOne(degreeQuery).toArray(function( err, result ) {
+    dbo.collection('Educational_degree').findOne(degreeQuery, function( err, result ) {
       if( err ) {
           res.status(400).send({"error": "Error al conectar con el servidor" });
       } 
