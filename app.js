@@ -18,13 +18,6 @@ var userEmail
 var adminPassword
 var adminUsername
 
-// connexió a mongo i start app
-mongo.connect(url, function( err, _client ) {
-  // si no ens podem connectar, sortim
-  if( err ) throw err;
-  mongoClient = _client;
-});
-
 
 app.use(cors());
 
@@ -62,10 +55,6 @@ app.get('/api/loginAdmin', function(req, res){
 
 });
 
-
-app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`)
-});
 
 function getUser(query, res, userPassword){
 
@@ -136,3 +125,9 @@ function checkPassword(data, pass, res){
       });
     }    
 }
+
+
+//puerto para los endpoints
+app.listen(port, () => {
+  console.log(`Example app listening at http://localhost:${port}`)
+});
