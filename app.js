@@ -166,7 +166,12 @@ app.get('/api/getDegree', function(req, res) {
 
       mongoClient.close();
   });
+});
 
+app.get('/api/testeando'm function (req, res){
+
+  aleatorio = req.query.aleatorio;
+  res.status(200).send(aleatorio);
 
 });
 
