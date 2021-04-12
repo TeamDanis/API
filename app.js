@@ -168,7 +168,7 @@ app.get('/api/getDegree', function(req, res) {
   });
 });
 
-app.get('/api/testeando'm function (req, res){
+app.get('/api/testeando', function (req, res){
 
   aleatorio = req.query.aleatorio;
   res.status(200).send(aleatorio);
