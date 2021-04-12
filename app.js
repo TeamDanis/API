@@ -142,7 +142,7 @@ app.get('/api/getDegree', function(req, res) {
   degreeCode = req.query.degreeCode;
   var degreeQuery = { "CODI_CICLE_FORMATIU" : degreeCode};
 
-  console.log("degree code: ", degreeCode);
+  console.log("degree code: ", degreeQuery);
 
    mongo.connect(url, function( err, _client ) {
     // si no ens podem connectar, sortim
