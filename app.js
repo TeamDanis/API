@@ -139,7 +139,7 @@ function checkPassword(data, pass, res){
 app.get('/api/getDegree', function(req, res) {
 
   //auth user
-  vdegreeCode = req.query.degreeCode;
+  vdegreeCode = req.query.degreeCode.replace(/\s/g,'');
 
   if (vdegreeCode == undefined){
     res.status(400).send({"error":"No se ha informado de un careerCode en la query"})
