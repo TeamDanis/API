@@ -18,9 +18,14 @@ var userEmail
 var adminPassword
 var adminUsername
 
-
 app.use(cors());
 
+
+/*
+*
+* ENDPOINTS LOGIN DE USUARIOS Y ADMINISTRADORES
+*
+*/
 app.get('/api/login', function(req, res) {
 
   //auth user
@@ -126,6 +131,44 @@ function checkPassword(data, pass, res){
     }    
 }
 
+/*
+*
+* ENDPOINTS LECTURA DE CICLOS
+*
+*/
+app.get('/api/getDegree', function(req, res) {
+
+  //auth user
+  degreeCode = req.query.degreeCode;
+  var degreeQuery = { "CODI_CICLE_FORMATIU" : degreeCode};
+
+  console.log("degree code: ", degreeCode);
+
+   mongo.connect(url, function( err, _client ) {
+    // si no ens podem connectar, sortim
+    if( err ) throw err;
+    mongoClient = _client;
+  });
+
+    var dbo = mongoClient.db("Matriculacions_BD");
+    dbo.collection('Educational_degree').findOne(degreeQuery).toArray(function( err, result ) {
+      if( err ) {
+          res.status(400).send({"error": "Error al conectar con el servidor" });
+          mongoClient.close();
+      } 
+
+      if(result != undefined) {
+        console.log("testing in method", result);
+        res.status(200).send(result);
+      } else {
+        res.status(400).send({"error" : "El ciclo no existe"});
+      }
+
+      mongoClient.close();
+  });
+
+
+});
 
 //puerto para los endpoints
 app.listen(port, () => {
