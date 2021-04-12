@@ -139,13 +139,13 @@ function checkPassword(data, pass, res){
 app.get('/api/getDegree', function(req, res) {
 
   //auth user
-  degreeCode = req.query.degreeCode;
+  vdegreeCode = req.query.degreeCode;
 
-  if (degreeCode == undefined){
+  if (vdegreeCode == undefined){
     res.status(400).send({"error":"No se ha informado de un careerCode en la query"})
   }
 
-  var degreeQuery = { "CODI_CICLE_FORMATIU" : degreeCode};
+  var degreeQuery = { "CODI_CICLE_FORMATIU" : vdegreeCode};
 
    mongo.connect(url, function( err, _client ) {
     // si no ens podem connectar, sortim
