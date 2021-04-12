@@ -140,9 +140,12 @@ app.get('/api/getDegree', function(req, res) {
 
   //auth user
   degreeCode = req.query.degreeCode;
-  var degreeQuery = { "CODI_CICLE_FORMATIU" : degreeCode};
 
-  console.log("degree code: ", degreeQuery);
+  if (degreeCode == undefined){
+    res.status(400).send({"error":"No se ha informado de un careerCode en la query"})
+  }
+
+  var degreeQuery = { "CODI_CICLE_FORMATIU" : degreeCode};
 
    mongo.connect(url, function( err, _client ) {
     // si no ens podem connectar, sortim
@@ -154,7 +157,6 @@ app.get('/api/getDegree', function(req, res) {
     dbo.collection('Educational_degree').findOne(degreeQuery).toArray(function( err, result ) {
       if( err ) {
           res.status(400).send({"error": "Error al conectar con el servidor" });
-          mongoClient.close();
       } 
 
       if(result != undefined) {
