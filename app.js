@@ -136,6 +136,33 @@ function checkPassword(data, pass, res){
 * ENDPOINTS LECTURA DE CICLOS
 *
 */
+
+app.get('/api/getAllDegrees', function(req, res) {
+
+   mongo.connect(url, function( err, _client ) {
+    // si no ens podem connectar, sortim
+    if( err ) throw err;
+    mongoClient = _client;
+  });
+
+    var dbo = mongoClient.db("Matriculacions_BD");
+    dbo.collection('Educational_degree').find({}).project({CODI_CICLE_FORMATIU : 1, NOM_CICLE_FORMATIU : 1}).toArray(function( err, result ) {
+      if( err ) {
+          res.status(400).send({"error": "Error al conectar con el servidor" });
+      } 
+
+      if(result != undefined) {
+        console.log("testing in method", result);
+        res.status(200).send(result);
+      } else {
+        res.status(400).send({"error" : "Algo ha salido mal"});
+      }
+
+      mongoClient.close();
+  });
+});
+
+
 app.get('/api/getDegree', function(req, res) {
 
   //auth user
