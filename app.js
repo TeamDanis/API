@@ -197,6 +197,76 @@ app.get('/api/getDegree', function(req, res) {
   });
 });
 
+/*
+*
+* ENDPOINTS LECTURA DE ALUMNOS
+*
+*/
+app.get('/api/getAlumn', function(req, res) {
+
+  if(req.query.degreeCode != undefined){
+
+    var degreeCode = req.query.degreeCode;
+    var alumnDegreeQuery = { "Degree_code" : degreeCode};
+
+    mongo.connect(url, function( err, _client ) {
+      // si no ens podem connectar, sortim
+      if( err ) throw err;
+      mongoClient = _client;
+    });
+
+    var dbo = mongoClient.db("Matriculacions_BD");
+    dbo.collection('Students_data').find({alumnDegreeQuery}).project({_id: 0, Name:1, First_surname:1, Degree_name:1}).toArray(function( err, result ) {
+        if( err ) {
+            res.status(400).send({"error": "Error al conectar con el servidor" });
+        } 
+
+        if(result != undefined) {
+          console.log("testing in method", result);
+          res.status(200).send(result);
+        } else {
+          res.status(400).send({"error" : "El alumno no existe"});
+        }
+
+        mongoClient.close();
+    });
+
+  } else if(req.query.RALCID != undefined){
+
+    var RALCID = req.query.RALCID;
+    var RALCIDQuery = { "RALC_id" : RALCID};
+
+    mongo.connect(url, function( err, _client ) {
+      // si no ens podem connectar, sortim
+      if( err ) throw err;
+      mongoClient = _client;
+    });
+
+    var dbo = mongoClient.db("Matriculacions_BD");
+    dbo.collection('Students_data').find({RALCIDQuery}).project({_id: 0, Name:1, First_surname:1, Degree_name:1, Center_city:1}).toArray(function( err, result ) {
+        if( err ) {
+            res.status(400).send({"error": "Error al conectar con el servidor" });
+        } 
+
+        if(result != undefined) {
+          console.log("testing in method", result);
+          res.status(200).send(result);
+        } else {
+          res.status(400).send({"error" : "El alumno no existe"});
+        }
+
+        mongoClient.close();
+    });
+
+  } else {
+
+    res.status(400).send({"error" : "La llamada al endpoint es incorrecta"});
+
+  }
+});
+
+
+
 app.get('/api/testeando', function (req, res){
 
   aleatorio = req.query.aleatorio;
