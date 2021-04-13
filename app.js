@@ -216,7 +216,7 @@ app.get('/api/getAlumn', function(req, res) {
     });
 
     var dbo = mongoClient.db("Matriculacions_BD");
-    dbo.collection('Students_data').find({alumnDegreeQuery}).project({_id: 0, Name:1, First_surname:1, Degree_name:1}).toArray(function( err, result ) {
+    dbo.collection('Students_data').find(alumnDegreeQuery).project({_id : 0, Name : 1, First_surname : 1, Degree_name : 1}).toArray(function( err, result ) {
         if( err ) {
             res.status(400).send({"error": "Error al conectar con el servidor" });
         } 
@@ -243,7 +243,7 @@ app.get('/api/getAlumn', function(req, res) {
     });
 
     var dbo = mongoClient.db("Matriculacions_BD");
-    dbo.collection('Students_data').find({RALCIDQuery}).project({_id: 0, Name:1, First_surname:1, Degree_name:1, Center_city:1}).toArray(function( err, result ) {
+    dbo.collection('Students_data').find(RALCIDQuery).project({_id : 0, Name : 1, First_surname : 1, Degree_name : 1, Center_city : 1}).toArray(function( err, result ) {
         if( err ) {
             res.status(400).send({"error": "Error al conectar con el servidor" });
         } 
