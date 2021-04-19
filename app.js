@@ -12,11 +12,13 @@ var url = "mongodb+srv://danisteam00:danisteam00@teamdanis.ryioo.mongodb.net/myF
 var mongoClient;
 
 
-var userPassword
-var userEmail
+var userPassword;
+var userEmail;
 
-var adminPassword
-var adminUsername
+var adminPassword;
+var adminUsername;
+
+var alumnsFile;
 
 app.use(cors());
 
@@ -265,7 +267,80 @@ app.get('/api/getAlumn', function(req, res) {
   }
 });
 
+/*
+*
+* ENDPOINTS IMPORTAR ALUMNOS
+*
+*/
 
+app.post('/api/importAlumnsCSV', async (req, res) => {
+    try {
+        if(!req.files) {
+            res.status(400).send({"error": "No se ha especificado ningun fichero" });
+        } else {
+            alumnsFile = req.files.alumnsFile;
+            
+            csvJSON(alumnsFile, res);
+            
+            
+        }
+    } catch (err) {
+        res.status(500).send(err);
+    }
+});
+
+function csvJSON(csv, res){
+
+  var lines=csv.split("\n");
+
+  var result = [];
+
+  var jsonImportAlumns;
+
+  // NOTE: If your columns contain commas in their values, you'll need
+  // to deal with those before doing the next step 
+  // (you might convert them to &&& or something, then covert them back later)
+  // jsfiddle showing the issue https://jsfiddle.net/
+  var headers=lines[0].split(",");
+
+  for(var i=1;i<lines.length;i++){
+
+      var obj = {};
+      var currentline=lines[i].split(",");
+
+      for(var j=0;j<headers.length;j++){
+          obj[headers[j]] = currentline[j];
+      }
+
+      result.push(obj);
+
+  }
+
+  //return result; //JavaScript object
+  jsonImportAlumns =  JSON.stringify(result); //JSON
+
+  mongo.connect(url, function( err, _client ) {
+      // si no ens podem connectar, sortim
+      if( err ) throw err;
+      mongoClient = _client;
+    });
+
+    var dbo = mongoClient.db("Matriculacions_BD");
+    dbo.collection('Students_data').insertMany(jsonImportAlumns ,function( err, result ) {
+        if( err ) {
+            res.status(400).send({"error": "Error al conectar con el servidor" });
+        } 
+
+        if(result != undefined) {
+          console.log("testing in method", result);
+          res.status(200).send(result);
+        } else {
+          res.status(400).send({"error" : "El alumno no existe"});
+        }
+
+        mongoClient.close();
+    });
+}
 
 app.get('/api/testeando', function (req, res){
 
