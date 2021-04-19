@@ -413,11 +413,11 @@ Aquesta resposta torna les dades en format JSON.
 <th>Description
 </th></tr>
 <tr>
-<td>DNI
+<td>RALCID
 </td>
 <td>String
 </td>
-<td>DNI del alumno en formato de String
+<td>RALC del alumno en formato de String
 </td>
 </tr></tbody></table>
 
@@ -521,11 +521,11 @@ Aquesta resposta torna les dades en format JSON.
 <th>Description
 </th></tr>
 <tr>
-<td>DNI
+<td>RALCID
 </td>
 <td>String
 </td>
-<td>String del DNI del alumno.
+<td>String del RALC del alumno.
 </td>
 </tr>
 <tr>
@@ -583,11 +583,11 @@ Aquesta resposta torna les dades en format JSON.
 <th>Description
 </th></tr>
 <tr>
-<td>alumnDNI
+<td>RALCID
 </td>
 <td>String
 </td>
-<td>String del DNI del alumno
+<td>String del RALC del alumno
 </td>
 </tr></tbody></table>
 
